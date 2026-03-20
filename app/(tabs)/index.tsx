@@ -1,98 +1,75 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View style={styles.container}>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.title}>Hello 👋</Text>
+          <Text style={styles.sub}>Christie Doe</Text>
+        </View>
+
+        <Image
+          source={{ uri: 'https://i.pravatar.cc/100' }}
+          style={styles.avatar}
+        />
+      </View>
+
+      <Text style={styles.section}>Your Insights</Text>
+
+      <View style={styles.grid}>
+
+        {[
+          { title: 'Scan new', sub: 'Scanned 483', color: '#E5E7FF' },
+          { title: 'Counterfeits', sub: 'Counterfeit 32', color: '#FFE5D9' },
+          { title: 'Success', sub: 'Checkouts 8', color: '#DFF7E2' },
+          { title: 'Directory', sub: 'History 26', color: '#E3F2FF' },
+        ].map((item, i) => (
+          <View key={i} style={styles.card}>
+            <View style={[styles.icon, { backgroundColor: item.color }]} />
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardSub}>{item.sub}</Text>
+          </View>
+        ))}
+
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: { flex: 1, backgroundColor: '#F5F6FA', padding: 20 },
+
+  header: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+
+  title: { fontSize: 24, fontWeight: '600' },
+  sub: { color: '#888' },
+
+  avatar: { width: 50, height: 50, borderRadius: 25 },
+
+  section: { marginTop: 25, fontSize: 18, fontWeight: '600' },
+
+  grid: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 10 },
+
+  card: {
+    width: '47%',
+    backgroundColor: '#F0F1F7',
+    borderRadius: 25,
+    padding: 18,
+    margin: '1.5%',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+
+  icon: {
+    width: 50,
+    height: 50,
+    borderRadius: 18,
+    marginBottom: 10,
   },
+
+  cardTitle: { fontWeight: '600' },
+  cardSub: { fontSize: 12, color: '#999', marginTop: 3 },
 });
