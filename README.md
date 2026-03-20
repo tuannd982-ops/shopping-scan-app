@@ -13,6 +13,7 @@
 ![Home Screen](screenshots/Home.png)
 ### Payment Screen
 ![Payment](screenshots/Payment.png)
-
+### Cart Screen
+![Cart](screenshots/Cart.png)
 ### Success Screen
 ![Success](screenshots/Success.png)
