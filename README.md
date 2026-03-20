@@ -6,13 +6,13 @@
 
 ### Scan Screen
 
-![Scan Screen](screenshots/Scan Screen.png)
+![Scan Screen](screenshots/Scan.png)
 
 ### Home Screen
 
-![Home Screen](screenshots/Home Screen.png)
+![Home Screen](screenshots/Home.png)
 ### Payment Screen
 ![Payment](screenshots/Payment.png)
 
 ### Success Screen
-![Success](screenshots/Success Screen.png)
+![Success](screenshots/Success.png)
